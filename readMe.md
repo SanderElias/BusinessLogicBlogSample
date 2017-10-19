@@ -4,5 +4,6 @@
 [![Build with Angular CLI](https://img.shields.io/badge/built%20with-Angular%20CLI-blue.svg)](https://github.com/angular/angular-cli)
 
 In this repo I have the samples that go with the [Business Logic blog]()
+See the [code in action](https://sanderelias.github.io/BusinessLogicBlogSample/)
 
 If you have any questions, [ping me on twitter](https://twitter.com/esosanderelias) , or [file an issue](https://github.com/SanderElias/BusinessLogicBlogSample/issues)
