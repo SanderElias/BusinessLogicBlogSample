@@ -1,0 +1,19 @@
+<section>
+  <h1>people</h1>
+  <article *ngFor='let person of persons$|async' (click)="select(person)">
+    {{person.name}}
+  </article>
+</section>
+<section *ngIf='selectedPerson'>
+  <h1>starships for {{selectedPerson.name}}</h1>
+  <!-- <pre>{{selectedPerson |json:true}}</pre> -->
+  <div *ngIf="selectedPerson.starships.length===0">No ships for this person</div>
+  <article *ngFor="let ship$ of starships">
+    <ng-container *ngIf='ship$ | async; let ship'>
+      {{ship.name}}
+    </ng-container>
+  </article>
+  <pre>
+    {{starships|json:true}}
+  </pre>
+</section>
