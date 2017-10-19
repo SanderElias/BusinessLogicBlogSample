@@ -20,7 +20,7 @@ export class SwapiService {
 
   private _load = <T>(url) =>
     this.http
-      .get<RootObject<Person>>(url)
+      .get<RootObject<T>>(url)
       .mergeMap(
         root => (root.next ? of(root).merge(this._load(root.next)) : of(root))
       );
