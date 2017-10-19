@@ -24,7 +24,7 @@ export interface RootObject<T> {
   results: T[];
 }
 
-export interface ship {
+export interface Ship {
   name: string;
   model: string;
   manufacturer: string;
@@ -42,5 +42,22 @@ export interface ship {
   films: string[];
   created: Date;
   edited: Date;
+  url: string;
+}
+
+export interface Movie {
+  title: string;
+  episode_id: number;
+  opening_crawl: string;
+  director: string;
+  producer: string;
+  release_date: string;
+  characters: string[];
+  planets: string[];
+  starships: string[];
+  vehicles: string[];
+  species: string[];
+  created: string;
+  edited: string;
   url: string;
 }

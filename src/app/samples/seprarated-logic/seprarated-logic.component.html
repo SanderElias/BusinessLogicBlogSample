@@ -1,0 +1,12 @@
+<section>
+  <app-persons [persons]='persons$|async' (selectedNewPerson)='selectedPerson = $event'></app-persons>
+</section>
+
+
+<section>
+  <h1 *ngIf='selectedPerson && selectedPerson.name'>{{selectedPerson.name}} occurs in</h1>
+  <app-movies1 [movies]='selectedPerson?.films'></app-movies1>
+
+  <star-ships1 [starships]='selectedPerson?.starships'></star-ships1>
+
+</section>

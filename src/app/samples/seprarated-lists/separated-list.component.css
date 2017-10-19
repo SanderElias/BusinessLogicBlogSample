@@ -15,12 +15,3 @@ section {
   max-height: calc(100vh - 7.5rem);
   box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
 }
-
-article {
-  cursor: pointer;
-  margin: 3px;
-  background-color: rgba(222, 240, 151, 0.6);
-  border-radius: 5px;
-  padding: 3px;
-  min-height: 1rem;
-}

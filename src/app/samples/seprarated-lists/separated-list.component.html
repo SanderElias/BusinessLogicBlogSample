@@ -1,0 +1,10 @@
+<section>
+    <app-persons [persons]='persons$|async' (selectedNewPerson)='select($event)'></app-persons>
+</section>
+
+<section>
+    <h1>{{selectedPerson.name}} occurs in</h1>
+    <app-movies [movies]='movies'></app-movies>
+
+    <star-ships [starships]='starships'></star-ships>
+</section>

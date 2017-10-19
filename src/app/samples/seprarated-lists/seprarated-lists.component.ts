@@ -14,11 +14,11 @@ import 'rxjs/add/operator/switchMap';
 import { Observable } from 'rxjs/Observable';
 
 @Component({
-  selector: 'all-in-one',
-  templateUrl: './all-in-one.component.html',
-  styleUrls: ['./all-in-one.component.css']
+  selector: 'seprarated-lists',
+  templateUrl: './separated-list.component.html',
+  styleUrls: ['./separated-list.component.css']
 })
-export class AllInOneComponent {
+export class SepraratedListsComponent {
   constructor(private http: HttpClient) {}
 
   starships: Observable<Ship>[] = [];
