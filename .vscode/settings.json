@@ -12,5 +12,8 @@
     "statusBar.foreground": "#e7e7e7",
     "statusBarItem.hoverBackground": "#0b8042"
   },
-  "peacock.color": "#07512a"
+  "peacock.color": "#07512a",
+  "cSpell.words": [
+    "urlify"
+  ]
 }

@@ -2,6 +2,7 @@ import {merge, mergeMap, map, scan} from 'rxjs/operators';
 import {Component} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {RootObject, Person, Ship, Movie} from '../../interfaces';
+import {urlify} from '../../util/urlify'
 
 import {of, Observable} from 'rxjs';
 
@@ -23,7 +24,7 @@ export class AllInOneComponent {
 
   private _load = (url) =>
     this.http
-      .get<RootObject<Person>>(url.replace('http', 'https'))
+      .get<RootObject<Person>>(urlify(url))
       .pipe(mergeMap((root) => (root.next ? of(root).pipe(merge(this._load(root.next))) : of(root))));
 
   private load = (url): Person[] =>
@@ -38,8 +39,8 @@ export class AllInOneComponent {
   select(person: Person) {
     this.selectedPerson = person;
     // replace the ships array
-    this.starships = person.starships.map((url) => this.http.get<Ship>(url.replace('http', 'https')));
+    this.starships = person.starships.map((url) => this.http.get<Ship>(urlify(url)));
     // replace the movies array
-    this.movies = person.films.map((url) => this.http.get<Movie>(url.replace('http', 'https')));
+    this.movies = person.films.map((url) => this.http.get<Movie>(urlify(url)));
   }
 }
