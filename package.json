@@ -9,7 +9,7 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "ghPages": "ng build --base-href /BusinessLogicBlogSample/ --prod --named-chunks && git add . && git commit -a -m \"update for GH pages\" && git subtree push --prefix dist origin gh-pages"
+    "ghPages": "ng build --base-href /BusinessLogicBlogSample/ --prod --named-chunks --output-hashing none && git add . && git commit -a -m \"update for GH pages\" && git subtree push --prefix dist origin gh-pages"
   },
   "private": true,
   "dependencies": {
