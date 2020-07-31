@@ -1,5 +1,5 @@
 import { Component, Input, SimpleChanges } from '@angular/core';
-import { Observable } from 'rxjs/Observable';
+import { Observable } from 'rxjs';
 import { Movie } from '../../../interfaces';
 import { MovieService } from '../../separated-logic.service';
 

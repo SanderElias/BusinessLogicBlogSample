@@ -7,7 +7,7 @@ import {
 } from '@angular/core';
 import { Ship } from '../../../interfaces';
 import { StarshipsService } from '../../separated-logic.service';
-import { Observable } from 'rxjs/Observable';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'star-ships1',

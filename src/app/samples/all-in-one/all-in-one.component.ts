@@ -1,22 +1,14 @@
-import { Component } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { RootObject, Person, Ship, Movie } from '../../interfaces';
+import {merge, mergeMap, map, scan} from 'rxjs/operators';
+import {Component} from '@angular/core';
+import {HttpClient} from '@angular/common/http';
+import {RootObject, Person, Ship, Movie} from '../../interfaces';
 
-import { of } from 'rxjs/observable/of';
-
-import 'rxjs/add/operator/do';
-import 'rxjs/add/operator/map';
-import 'rxjs/add/operator/merge';
-import 'rxjs/add/operator/mergeMap';
-import 'rxjs/add/operator/toPromise';
-import 'rxjs/add/operator/scan';
-import 'rxjs/add/operator/switchMap';
-import { Observable } from 'rxjs/Observable';
+import {of, Observable} from 'rxjs';
 
 @Component({
   selector: 'all-in-one',
   templateUrl: './all-in-one.component.html',
-  styleUrls: ['./all-in-one.component.css']
+  styleUrls: ['./all-in-one.component.css'],
 })
 export class AllInOneComponent {
   constructor(private http: HttpClient) {}
@@ -26,31 +18,28 @@ export class AllInOneComponent {
 
   selectedPerson: Person = {
     name: 'none selected',
-    starships: []
+    starships: [],
   } as Person;
 
-  private _load = url =>
+  private _load = (url) =>
     this.http
       .get<RootObject<Person>>(url)
-      .mergeMap(
-        root => (root.next ? of(root).merge(this._load(root.next)) : of(root))
-      );
+      .pipe(mergeMap((root) => (root.next ? of(root).pipe(merge(this._load(root.next.replace('http', 'https')))) : of(root))));
 
   private load = (url): Person[] =>
-    this._load(url)
-      .map((r: RootObject<Person>) => r.results)
-      .scan((combinedList, latestAdditions) =>
-        combinedList.concat(latestAdditions)
-      )
-      .map(set => set.sort((x, y) => (x.name < y.name ? -1 : 1)));
+    this._load(url).pipe(
+      map((r: RootObject<Person>) => r.results),
+      scan((combinedList:Person[], latestAdditions) => combinedList.concat(latestAdditions)),
+      map((set:Person[]) => set.sort((x, y) => (x.name < y.name ? -1 : 1)))
+    );
 
-  persons$ = this.load('https://swapi.co/api/people/');
+  persons$ = this.load('https://swapi.dev/api/people/');
 
   select(person: Person) {
     this.selectedPerson = person;
     // replace the ships array
-    this.starships = person.starships.map(url => this.http.get<Ship>(url));
+    this.starships = person.starships.map((url) => this.http.get<Ship>(url));
     // replace the movies array
-    this.movies = person.films.map(url => this.http.get<Movie>(url));
+    this.movies = person.films.map((url) => this.http.get<Movie>(url));
   }
 }
