@@ -23,7 +23,7 @@ export class SepraratedListsComponent {
 
   private _load = (url) =>
     this.http
-      .get<RootObject<Person>>(url)
+      .get<RootObject<Person>>(url.replace('http:', 'https:'))
       .pipe(mergeMap((root) => (root.next ? of(root).pipe(merge(this._load(root.next))) : of(root))));
 
   private load = (url): Person[] =>

@@ -12,8 +12,8 @@ export class SwapiService {
 
   private _load = <T>(url) =>
     this.http
-      .get<RootObject<T>>(url)
-      .pipe(mergeMap((root) => (root.next ? of(root).pipe(merge(this._load(root.next.replace('http:', 'https:')))) : of(root))));
+      .get<RootObject<T>>(url.replace('http:', 'https:'))
+      .pipe(mergeMap((root) => (root.next ? of(root).pipe(merge(this._load(root.next))) : of(root))));
 
   public loadAll = <T>(url): Observable<T[]> =>
     this._load<T>(url).pipe(
