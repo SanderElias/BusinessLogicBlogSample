@@ -38,8 +38,8 @@ export class AllInOneComponent {
   select(person: Person) {
     this.selectedPerson = person;
     // replace the ships array
-    this.starships = person.starships.map((url) => this.http.get<Ship>(url));
+    this.starships = person.starships.map((url) => this.http.get<Ship>(url.replace('http:', 'https:')));
     // replace the movies array
-    this.movies = person.films.map((url) => this.http.get<Movie>(url));
+    this.movies = person.films.map((url) => this.http.get<Movie>(url.replace('http:', 'https:')));
   }
 }
