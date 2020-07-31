@@ -27,7 +27,7 @@ export class SepraratedListsComponent {
       .pipe(mergeMap((root) => (root.next ? of(root).pipe(merge(this._load(root.next))) : of(root))));
 
   private load = (url): Person[] =>
-    this._load(url).pipe(
+    this._load(url.replace('http:','https:')).pipe(
       map((r: RootObject<Person>) => r.results),
       scan((combinedList:Person[], latestAdditions:Person[]) => combinedList.concat(latestAdditions)),
       map((set:any[]) => set.sort((x, y) => (x.name < y.name ? -1 : 1)))

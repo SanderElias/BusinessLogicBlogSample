@@ -24,7 +24,7 @@ export class AllInOneComponent {
   private _load = (url) =>
     this.http
       .get<RootObject<Person>>(url)
-      .pipe(mergeMap((root) => (root.next ? of(root).pipe(merge(this._load(root.next.replace('http', 'https')))) : of(root))));
+      .pipe(mergeMap((root) => (root.next ? of(root).pipe(merge(this._load(root.next.replace('http:', 'https:')))) : of(root))));
 
   private load = (url): Person[] =>
     this._load(url).pipe(
