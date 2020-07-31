@@ -12,7 +12,7 @@ export class SwapiService {
 
   private _load = <T>(url) =>
     this.http
-      .get<RootObject<T>>(url.replace('http:', 'https:'))
+      .get<RootObject<T>>(url.replace('http', 'https'))
       .pipe(mergeMap((root) => (root.next ? of(root).pipe(merge(this._load(root.next))) : of(root))));
 
   public loadAll = <T>(url): Observable<T[]> =>
@@ -36,7 +36,7 @@ export class StarshipsService {
 
   load(url) {
     // this version doesn't load the ships over and over again anymore
-    return this.starships$.pipe(map((ships) => ships.find((cur) => cur.url === url)));
+    return this.starships$.pipe(map((ships) => ships.find((cur) => cur.url.replace('http', 'https') === url.replace('http', 'https'))));
   }
   constructor(private swapi: SwapiService) {
     // trick to load the straships at init, and keep them in mmory
@@ -52,7 +52,7 @@ export class MovieService {
 
   load(url) {
     // this version doesn't load the ships over and over again anymore
-    return this.movies$.pipe(map((ships) => ships.find((cur) => cur.url === url)));
+    return this.movies$.pipe(map((ships) => ships.find((cur) => cur.url.replace('http', 'https') === url.replace('http', 'https'))));
   }
   constructor(private swapi: SwapiService) {
     // trick to load the straships at init, and keep them in mmory

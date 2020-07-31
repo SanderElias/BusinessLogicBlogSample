@@ -23,11 +23,11 @@ export class SepraratedListsComponent {
 
   private _load = (url) =>
     this.http
-      .get<RootObject<Person>>(url.replace('http:', 'https:'))
+      .get<RootObject<Person>>(url.replace('http', 'https'))
       .pipe(mergeMap((root) => (root.next ? of(root).pipe(merge(this._load(root.next))) : of(root))));
 
   private load = (url): Person[] =>
-    this._load(url.replace('http:','https:')).pipe(
+    this._load(url.replace('http','https')).pipe(
       map((r: RootObject<Person>) => r.results),
       scan((combinedList:Person[], latestAdditions:Person[]) => combinedList.concat(latestAdditions)),
       map((set:any[]) => set.sort((x, y) => (x.name < y.name ? -1 : 1)))
@@ -38,8 +38,8 @@ export class SepraratedListsComponent {
   select(person: Person) {
     this.selectedPerson = person;
     // replace the ships array
-    this.starships = person.starships.map((url) => this.http.get<Ship>(url.replace('http:', 'https:')));
+    this.starships = person.starships.map((url) => this.http.get<Ship>(url.replace('http', 'https')));
     // replace the movies array
-    this.movies = person.films.map((url) => this.http.get<Movie>(url.replace('http:', 'https:')));
+    this.movies = person.films.map((url) => this.http.get<Movie>(url.replace('http', 'https')));
   }
 }
