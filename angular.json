@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "dummy": {
+    "blb-sample": {
       "root": "",
       "sourceRoot": "src",
       "projectType": "application",
@@ -14,7 +14,7 @@
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
             "aot": true,
-            "outputPath": "dist/dummy",
+            "outputPath": "dist",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -57,18 +57,18 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "dummy:build"
+            "browserTarget": "blb-sample:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "dummy:build:production"
+              "browserTarget": "blb-sample:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "dummy:build"
+            "browserTarget": "blb-sample:build"
           }
         },
         "test": {
@@ -102,7 +102,7 @@
         }
       }
     },
-    "dummy-e2e": {
+    "blb-sample-e2e": {
       "root": "e2e/",
       "projectType": "application",
       "architect": {
@@ -110,11 +110,11 @@
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "e2e/protractor.conf.js",
-            "devServerTarget": "dummy:serve"
+            "devServerTarget": "blb-sample:serve"
           },
           "configurations": {
             "production": {
-              "devServerTarget": "dummy:serve:production"
+              "devServerTarget": "blb-sample:serve:production"
             }
           }
         },
@@ -130,5 +130,5 @@
       }
     }
   },
-  "defaultProject": "dummy"
+  "defaultProject": "blb-sample"
 }
